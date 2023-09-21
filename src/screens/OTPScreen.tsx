@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { RootStackParamList, ThemeType } from "../types";
 import useStyles from "../hooks/useStyles";
@@ -7,12 +7,14 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import BackButton from "../components/BackButton";
 import OtpInput from "../components/OTPInput";
 import { StackScreenProps } from "@react-navigation/stack";
+import { useFocusEffect } from "@react-navigation/native";
 
-type Props = StackScreenProps<RootStackParamList, "OTPScreen">;
+type Props = StackScreenProps<RootStackParamList>;
 
 export default function OTPScreen({ navigation }: Props) {
 	const { styles, theme } = useStyles(createStyles);
 	const [otp, setOtp] = React.useState<string | undefined>("");
+	const [isLoading, setIsLoading] = React.useState<boolean>(false);
 
 	React.useEffect(() => {
 		navigation.setOptions({
@@ -24,6 +26,17 @@ export default function OTPScreen({ navigation }: Props) {
 		});
 	}, [navigation]);
 
+	useFocusEffect(
+		React.useCallback(() => {
+			if (otp?.length === 4) {
+				setTimeout(() => {
+					navigation.replace("SuccessScreen");
+					setIsLoading(false);
+				}, 500);
+			}
+		}, [otp])
+	);
+
 	return (
 		<>
 			<CustomStatusBar style="light" />
@@ -33,7 +46,15 @@ export default function OTPScreen({ navigation }: Props) {
 				keyboardShouldPersistTaps="handled"
 			>
 				<Text style={styles.headingText}>Please enter OTP code</Text>
-				<OtpInput autoFocus={true} onChange={(text) => setOtp(text)} style={{ marginTop: 48 }} />
+				<OtpInput
+					autoFocus={true}
+					onChange={(text) => setOtp(text)}
+					style={{ marginTop: 48 }}
+					onSuccess={() => setIsLoading(true)}
+				/>
+				{isLoading ? (
+					<ActivityIndicator animating color={theme.white} style={styles.loadingIndicator} />
+				) : null}
 			</KeyboardAwareScrollView>
 		</>
 	);
@@ -49,5 +70,8 @@ const createStyles = (theme: ThemeType) =>
 			color: theme.white,
 			fontSize: 20,
 			textAlign: "center",
+		},
+		loadingIndicator: {
+			marginTop: 20,
 		},
 	});

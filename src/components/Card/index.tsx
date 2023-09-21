@@ -45,7 +45,6 @@ export default function Card({ formValues }: Props) {
 								{
 									color: formValues.cvv ? theme.black : theme.fade,
 									letterSpacing: -1,
-									fontWeight: "600",
 								},
 							]}
 						>
@@ -110,7 +109,6 @@ const createStyles = (theme: ThemeType) =>
 		},
 		infoValue: {
 			color: theme.text,
-			fontWeight: "500",
 			fontSize: 16,
 		},
 		row: {

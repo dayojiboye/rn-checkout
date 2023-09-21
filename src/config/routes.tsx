@@ -3,6 +3,7 @@ import Home from "../screens/Home";
 import { RootStackParamList } from "../types";
 import OTPScreen from "../screens/OTPScreen";
 import { createStackNavigator } from "@react-navigation/stack";
+import SuccessScreen from "../screens/SuccessScreen";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -21,6 +22,7 @@ export default function AppRoutes() {
 		>
 			<Stack.Screen name="Home" component={Home} />
 			<Stack.Screen name="OTPScreen" component={OTPScreen} />
+			<Stack.Screen name="SuccessScreen" component={SuccessScreen} />
 		</Stack.Navigator>
 	);
 }

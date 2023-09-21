@@ -12,7 +12,7 @@ import CustomTextInput from "../components/CustomTextInput";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { StackScreenProps } from "@react-navigation/stack";
 
-type Props = StackScreenProps<RootStackParamList, "Home">;
+type Props = StackScreenProps<RootStackParamList>;
 
 const defaultFormValues: FormValues = {
 	cardNumber: "",
@@ -59,6 +59,7 @@ export default function Home({ navigation }: Props) {
 						placeholder="Email"
 						leftIcon={Icon}
 						leftIconProps={{ name: "envelope", color: theme.charcoal, width: 20, size: 20 }}
+						value={formValues.email}
 						onChangeText={(value) => handleChange("email", value)}
 					/>
 					<MaskedTextInput
@@ -101,7 +102,7 @@ export default function Home({ navigation }: Props) {
 						keyboardType="numeric"
 						placeholder="PIN"
 						leftIcon={Icon}
-						leftIconProps={{ name: "lock", color: theme.charcoal, width: 20, size: 28 }}
+						leftIconProps={{ name: "lock", color: theme.charcoal, width: 20, size: 25 }}
 						value={formValues.pin}
 						secureTextEntry
 						maxLength={4}
@@ -114,7 +115,10 @@ export default function Home({ navigation }: Props) {
 				<CustomButton
 					label="Continue"
 					disabled={isDisabled}
-					onPress={() => navigation.navigate("OTPScreen")}
+					onPress={() => {
+						navigation.navigate("OTPScreen");
+						setFormValues(defaultFormValues);
+					}}
 					style={styles.submitButton}
 				/>
 			</KeyboardAwareScrollView>
