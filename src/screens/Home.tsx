@@ -5,14 +5,14 @@ import { FormValues, RootStackParamList, ThemeType } from "../types";
 import useStyles from "../hooks/useStyles";
 import CustomStatusBar from "../components/CustomStatusBar";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import Card from "../components/Card";
 import { creditCardMask, expiryMask, formHasErrors } from "../utils/helpers";
 import MaskedTextInput from "../components/MaskedTextInput";
 import CustomTextInput from "../components/CustomTextInput";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { StackScreenProps } from "@react-navigation/stack";
 
-type Props = NativeStackScreenProps<RootStackParamList, "Home">;
+type Props = StackScreenProps<RootStackParamList, "Home">;
 
 const defaultFormValues: FormValues = {
 	cardNumber: "",
@@ -110,13 +110,13 @@ export default function Home({ navigation }: Props) {
 							handleChange("pin", val);
 						}}
 					/>
-					<CustomButton
-						label="Continue"
-						style={styles.submitButton}
-						disabled={isDisabled}
-						onPress={() => navigation.navigate("OTPScreen")}
-					/>
 				</View>
+				<CustomButton
+					label="Continue"
+					disabled={isDisabled}
+					onPress={() => navigation.navigate("OTPScreen")}
+					style={styles.submitButton}
+				/>
 			</KeyboardAwareScrollView>
 		</>
 	);
@@ -126,7 +126,7 @@ const createStyles = (theme: ThemeType) =>
 	StyleSheet.create({
 		container: {
 			paddingHorizontal: 20,
-			paddingTop: 100,
+			paddingTop: 80,
 			paddingBottom: 50,
 		},
 		form: {

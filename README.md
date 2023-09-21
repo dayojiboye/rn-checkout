@@ -1,1 +1,1 @@
-# rn-template
+# rn-checkout

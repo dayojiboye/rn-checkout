@@ -1,4 +1,4 @@
-import { StyleProp, StyleSheet, Text, View, ViewStyle, Keyboard } from "react-native";
+import { StyleProp, StyleSheet, View, ViewStyle, Keyboard } from "react-native";
 import React from "react";
 import { ThemeType } from "../../types";
 import useStyles from "../../hooks/useStyles";
