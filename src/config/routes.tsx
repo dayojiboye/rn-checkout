@@ -7,7 +7,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function AppRoutes() {
 	return (
-		<Stack.Navigator screenOptions={{ headerShown: false, gestureEnabled: true }}>
+		<Stack.Navigator screenOptions={{ gestureEnabled: true }}>
 			<Stack.Screen name="Home" component={Home} />
 		</Stack.Navigator>
 	);

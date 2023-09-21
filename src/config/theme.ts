@@ -1,12 +1,14 @@
 import { ThemeType } from "../types";
 
 const commonValues = {
-	green: "#4CAF4F",
-	inputBg: "#FAF0D3",
+	inputBg: "#F5F0D8",
 	white: "#fff",
-	disabled: "#949191",
 	black: "#000000",
-	// add more
+	fade: "#ccc",
+	placeholder: "rgb(151, 151, 153)",
+	gunmetalGray: "#4D5339",
+	puce: "#B19081",
+	charcoal: "#4F7A83",
 };
 
 export const lightTheme = {
