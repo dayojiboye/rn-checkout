@@ -9,6 +9,7 @@ const commonValues = {
 	gunmetalGray: "#4D5339",
 	puce: "#B19081",
 	charcoal: "#4F7A83",
+	muted: "#eee",
 };
 
 export const lightTheme = {

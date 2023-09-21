@@ -49,7 +49,7 @@ export default function Card({ formValues }: Props) {
 								},
 							]}
 						>
-							{formValues.cvv.replace(/./g, "*") || "•••"}
+							{formValues.cvv.replace(/./g, "*") || "***"}
 						</Text>
 					</View>
 				</View>

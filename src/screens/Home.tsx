@@ -40,8 +40,6 @@ export default function Home({ navigation }: Props) {
 	React.useEffect(() => {
 		navigation.setOptions({
 			title: "Checkout",
-			headerTitleStyle: styles.headerTitleStyle,
-			headerShadowVisible: false,
 		});
 	}, [navigation]);
 
@@ -112,7 +110,12 @@ export default function Home({ navigation }: Props) {
 							handleChange("pin", val);
 						}}
 					/>
-					<CustomButton label="Continue" style={styles.submitButton} disabled={isDisabled} />
+					<CustomButton
+						label="Continue"
+						style={styles.submitButton}
+						disabled={isDisabled}
+						onPress={() => navigation.navigate("OTPScreen")}
+					/>
 				</View>
 			</KeyboardAwareScrollView>
 		</>
@@ -125,10 +128,6 @@ const createStyles = (theme: ThemeType) =>
 			paddingHorizontal: 20,
 			paddingTop: 100,
 			paddingBottom: 50,
-		},
-		headerTitleStyle: {
-			fontSize: 16,
-			fontWeight: "500",
 		},
 		form: {
 			marginTop: 40,
