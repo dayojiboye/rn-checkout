@@ -1,6 +1,6 @@
 import Toast from "react-native-root-toast";
 import { toastType } from "../enums";
-import { Mask } from "react-native-mask-input";
+import { Mask, formatWithMask } from "react-native-mask-input";
 import { FormValues } from "../types";
 
 export const showToast = (
@@ -62,4 +62,13 @@ export const formHasErrors = (formValues: FormValues): boolean => {
 	} else {
 		return false;
 	}
+};
+
+export const formatTextWithMask = (text: string, mask: Mask) => {
+	const { obfuscated } = formatWithMask({
+		text,
+		mask,
+	});
+
+	return obfuscated;
 };

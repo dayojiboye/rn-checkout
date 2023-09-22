@@ -3,6 +3,7 @@ import React from "react";
 import useStyles from "../../hooks/useStyles";
 import { FormValues, ThemeType } from "../../types";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { creditCardMask, formatTextWithMask } from "../../utils/helpers";
 
 type Props = {
 	formValues: FormValues;
@@ -25,7 +26,7 @@ export default function Card({ formValues }: Props) {
 							{ color: theme.charcoal, opacity: formValues.cardNumber ? 1 : 0.4 },
 						]}
 					>
-						{formValues.cardNumber || "0000 0000 0000 0000"}
+						{formatTextWithMask(formValues.cardNumber, creditCardMask) || "0000 0000 0000 0000"}
 					</Text>
 				</View>
 				<View style={styles.row}>

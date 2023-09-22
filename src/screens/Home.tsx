@@ -69,6 +69,7 @@ export default function Home({ navigation }: Props) {
 						leftIconProps={{ name: "credit-card", color: theme.charcoal, size: 20 }}
 						value={formValues.cardNumber}
 						maxLength={19}
+						showObfuscatedValue
 						mask={creditCardMask}
 						onChangeText={(unmasked) => handleChange("cardNumber", unmasked)}
 					/>
