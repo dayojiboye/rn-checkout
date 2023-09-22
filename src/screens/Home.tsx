@@ -11,6 +11,7 @@ import MaskedTextInput from "../components/MaskedTextInput";
 import CustomTextInput from "../components/CustomTextInput";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { StackScreenProps } from "@react-navigation/stack";
+import MIcon from "react-native-vector-icons/MaterialIcons";
 
 type Props = StackScreenProps<RootStackParamList>;
 
@@ -35,6 +36,11 @@ export default function Home({ navigation }: Props) {
 	};
 
 	const isDisabled = formHasErrors(formValues);
+
+	const isCardNumberValid = formValues.cardNumber
+		.trim()
+		.replace(/\s+/g, "")
+		.match(/\d{4} *\d{4} *\d{4} *\d{4}/);
 
 	// Configure screen header inside component
 	React.useEffect(() => {
@@ -72,6 +78,8 @@ export default function Home({ navigation }: Props) {
 						showObfuscatedValue
 						mask={creditCardMask}
 						onChangeText={(unmasked) => handleChange("cardNumber", unmasked)}
+						rightIcon={isCardNumberValid ? MIcon : undefined}
+						rightIconProps={{ name: "verified", size: 20, color: theme.charcoal }}
 					/>
 					<View style={styles.formRow}>
 						<MaskedTextInput

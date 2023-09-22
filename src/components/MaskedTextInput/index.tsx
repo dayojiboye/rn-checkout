@@ -35,12 +35,13 @@ export default function MaskedTextInput({
 	const { styles, theme } = useStyles(createStyles);
 	const refInput = React.useRef<TextInput>(null);
 
-	const Icon = leftIcon ? leftIcon : rightIcon;
+	const LeftIcon = leftIcon;
+	const RightIcon = rightIcon;
 
 	return (
 		<View style={[styles.outerContainer, outerContainerStyle]}>
 			<View style={[styles.container, containerStyle]}>
-				{leftIcon && <Icon {...leftIconProps} />}
+				{leftIcon && <LeftIcon {...leftIconProps} />}
 				<MaskInput
 					ref={refInput}
 					placeholder={placeholder}
@@ -52,7 +53,7 @@ export default function MaskedTextInput({
 					onChangeText={onChangeText}
 					{...props}
 				/>
-				{rightIcon && <Icon {...rightIconProps} />}
+				{rightIcon && <RightIcon {...rightIconProps} />}
 			</View>
 		</View>
 	);

@@ -11,6 +11,7 @@ import React from "react";
 import { StyleProp } from "react-native";
 import { ThemeType } from "../../types";
 import useStyles from "../../hooks/useStyles";
+import Icon from "react-native-vector-icons/Feather";
 
 type Props = {
 	onChangeText: (text: string) => void;
@@ -43,12 +44,13 @@ export default function CustomTextInput({
 	const refInput = React.useRef<TextInput>(null);
 	const [secureText, setSecureText] = React.useState<boolean>(true);
 
-	const Icon = leftIcon ? leftIcon : rightIcon;
+	const LeftIcon = leftIcon;
+	const RightIcon = rightIcon;
 
 	return (
 		<View style={[styles.outerContainer, outerContainerStyle]}>
 			<View style={[styles.container, containerStyle]}>
-				{leftIcon && <Icon {...leftIconProps} />}
+				{leftIcon && <LeftIcon {...leftIconProps} />}
 				<TextInput
 					ref={refInput}
 					placeholder={placeholder}
@@ -73,7 +75,7 @@ export default function CustomTextInput({
 						<Icon name={secureText ? "eye" : "eye-off"} size={20} color={theme.placeholder} />
 					</TouchableOpacity>
 				)}
-				{rightIcon && <Icon {...rightIconProps} />}
+				{rightIcon && <RightIcon {...rightIconProps} />}
 			</View>
 		</View>
 	);

@@ -42,7 +42,8 @@ export default function CustomButton({
 	...props
 }: Props) {
 	const { theme, styles } = useStyles(createStyles);
-	const Icon = leftIcon ? leftIcon : rightIcon;
+	const LeftIcon = leftIcon;
+	const RightIcon = rightIcon;
 
 	return (
 		<TouchableOpacity
@@ -61,9 +62,9 @@ export default function CustomButton({
 				<ActivityIndicator size="small" color={theme.white} />
 			) : (
 				<>
-					{leftIcon && <Icon {...iconProps} />}
+					{leftIcon && <LeftIcon {...iconProps} />}
 					<Text style={[styles.labelStyle, labelStyle]}>{label}</Text>
-					{rightIcon && <Icon {...iconProps} />}
+					{rightIcon && <RightIcon {...iconProps} />}
 				</>
 			)}
 		</TouchableOpacity>
