@@ -41,7 +41,20 @@ export const creditCardMask: Mask = [
 	/\d/,
 ];
 
-export const expiryMask: Mask = [/[0-1]/, /[0-2]/, "/", /[2]/, /[3-9]/];
+export const expiryMask: Mask = (text = "") => {
+	const cleanText = text.replace(/\D+/g, "");
+
+	let secondDigitMonthMask = /\d/;
+
+	if (cleanText.charAt(0) === "0") {
+		secondDigitMonthMask = /[1-9]/;
+	}
+	if (cleanText.charAt(0) === "1") {
+		secondDigitMonthMask = /[012]/;
+	}
+
+	return [/[0-1]/, secondDigitMonthMask, "/", /\d/, /\d/, /\d/, /\d/];
+};
 
 export const emailValidator: RegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -72,3 +85,13 @@ export const formatTextWithMask = (text: string, mask: Mask) => {
 
 	return obfuscated;
 };
+
+// const value = unmasked
+// 									.replace(/[^+0-9\/]/g, "")
+// 									.replace(/^([1-9]\/|[2-9])$/g, "0$1/")
+// 									.replace(/^(0[1-9]|1[0-2])$/g, "$1/")
+// 									.replace(/^([0-1])([3-9])$/g, "0$1/$2")
+// 									.replace(/^(0?[1-9]|1[0-2])([0-9]{2})$/g, "$1/$2")
+// 									.replace(/^([0]+)\/|[0]+$/g, "0")
+// 									.replace(/[^\d\/]|^[\/]*$/g, "")
+// 									.replace(/\/\//g, "/")
